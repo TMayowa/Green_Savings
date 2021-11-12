@@ -1,0 +1,168 @@
+WindowManager:
+    HomeWindow:
+    NewPantWindow:
+    ConfirmationWindow:
+    TransferWindow:
+    SuccessfulTransfer:
+
+
+<HomeWindow>
+    name: "Home"
+
+    GridLayout:
+        cols:1
+
+        size: root.width, root.height
+        padding: 50
+        spacing: 50
+
+
+        GridLayout:
+            cols:1
+
+            Image:
+                source: "images/image.png"
+                allow_stretch: True
+                keep_ratio: True
+
+            Label:
+                text: "Green Savings"
+                background_color: (1,1,1,1)
+                font_size: 35
+                color: (96/255,96/255,96/255,1)
+
+            Label:
+                text: "Account number: 23459876"
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+            Label:
+                text: "Account type: Savings"
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+            Label:
+                text: "Total Savings: 100kr"
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+            Button:
+                text:"Add to Pant"
+                background_normal: ""
+                background_color: (0,204/255,204/255,0.5)
+                font_size: 25
+                on_release: app.root.current = "New Savings"
+
+            Button:
+                text: "Transfer Savings to Acct"
+                font_size: 25
+                background_normal: ""
+                background_color: (0,102/255,102/255,0.5)
+                on_release: app.root.current = "transfer"
+
+<NewPantWindow>:
+    name: "New Savings"
+
+    code: code
+    GridLayout:
+        cols:1
+
+        padding: 50
+        spacing: 50
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Enter pant code: "
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+            TextInput:
+                id: code
+                multiline: False
+
+        Button:
+            text: "Add to savings"
+            font_size: 32
+            background_normal: ""
+            background_color: (0,204/255,204/255,0.5)
+            on_release: app.root.current = "confirmation"
+
+        Button:
+            text: "Go Back"
+            font_size: 32
+            background_normal: ""
+            background_color: (0,102/255,102/255,0.5)
+            on_release: app.root.current = "Home"
+
+<ConfirmationWindow>:
+    name: "confirmation"
+
+    GridLayout:
+        cols:1
+
+        padding: 50
+        spacing: 50
+
+        GridLayout:
+            cols:1
+            Label:
+                text: "Thanks for contributing to Sustainability"
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+        Button:
+            text: "Go to Homepage"
+            font_size: 32
+            background_normal: ""
+            background_color: (0,102/255,102/255,0.5)
+            on_release: app.root.current = "Home"
+
+<TransferWindow>:
+    name: "transfer"
+
+    withdraw: transAmount
+    account: acct
+    GridLayout:
+        cols:1
+
+        padding: 50
+        spacing: 50
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Enter account number: "
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+            TextInput:
+                id: acct
+                multiline: False
+
+            Label:
+                text: "Enter amount: "
+                font_size: 25
+                color: (96/255,96/255,96/255,1)
+
+            TextInput:
+                id: transAmount
+                multiline: False
+
+        Button:
+            text: "Transfer to account"
+            font_size: 32
+            background_normal: ""
+            background_color: (0,204/255,204/255,0.5)
+            on_press: root.details()
+            on_release: app.root.current = "confirmation"
+
+        Button:
+            text: "Go Back"
+            font_size: 32
+            background_normal: ""
+            background_color: (0,102/255,102/255,0.5)
+            on_release: app.root.current = "Home"
+
